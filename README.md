@@ -6,6 +6,8 @@ _"Ignite conversations, Spark intelligence."_
 
 Iqra is a state-aware chatbot designed specifically for Discord text channels. Currently harnessing the power of OpenAI's Chat Models, Iqra is programmed to interact, respond, and engage in conversations just like a human would. It was designed with the aim of making Discord chats more engaging and interactive.
 
+Test it Out in: https://discord.gg/hxyT7DcrJe (if its online)
+
 ## Logic
 
 As Iqra is semi-programmed to be self-aware, this means that there are progammatic ways included that we check whether Iqra is supposed to reply or not while also including an AI Validation step.
