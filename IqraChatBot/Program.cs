@@ -3,6 +3,7 @@ using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Rystem.OpenAi;
 using Rystem.OpenAi.Chat;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -106,9 +107,30 @@ namespace IqraChatBot
             };
 
             _discordClient = new DiscordSocketClient(config);
-            _discordClient.MessageReceived += MessageReceived;
 
+            // Login Discord Bot
             await _discordClient.LoginAsync(TokenType.Bot, discordBotToken);
+            Stopwatch discordTimeout = Stopwatch.StartNew();
+            while (_discordClient.LoginState != LoginState.LoggedIn)
+            {
+                if (discordTimeout.Elapsed.TotalSeconds > 10)
+                {
+                    throw new Exception("Timed out while trying to wait for the discord client to log-in.\nWaited 10 seconds.");
+                }
+                await Task.Delay(10);
+            }
+
+            // Connect Discord Bot
+            discordTimeout.Restart();
+            await _discordClient.StartAsync();
+            while (_discordClient.ConnectionState != ConnectionState.Connected)
+            {
+                if (discordTimeout.Elapsed.TotalSeconds > 10)
+                {
+                    throw new Exception("Timed out while trying to wait for the discord client to get connected.\nWaited 10 seconds.");
+                }
+                await Task.Delay(10);
+            }
             _currentDiscordClientId = _discordClient.CurrentUser.Id;
 
             // Check if the given General Chat Channel exists
@@ -126,7 +148,8 @@ namespace IqraChatBot
                 }
             }
 
-            await _discordClient.StartAsync();
+            // Finally bind message receiving
+            _discordClient.MessageReceived += MessageReceived;
         }
         private void InitalizeAppConfig()
         {
@@ -184,7 +207,7 @@ namespace IqraChatBot
             {
                 throw new Exception("GeneralChatChannelId value is empty or invaid in appsettings json file.");
             }
-            List<ulong>? DiscordAdminIds = _appConfig.GetSection("GeneralChatChannelId").Get<List<ulong>>();
+            List<ulong>? DiscordAdminIds = _appConfig.GetSection("DiscordAdminIds").Get<List<ulong>>();
             if (DiscordAdminIds == null)
             {
                 throw new Exception("DiscordAdminIds array invaid or missing in appsettings json file.");
