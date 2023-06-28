@@ -1,0 +1,3 @@
+[submodule "Rystem.OpenAi.Api"]
+	path = Rystem.OpenAi.Api
+	url = https://github.com/KeyserDSoze/Rystem.OpenAi.git
