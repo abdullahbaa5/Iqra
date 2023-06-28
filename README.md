@@ -1,4 +1,4 @@
-# Iqra
+# Iqra (And God Said, READ!)
 
 _"Ignite conversations, Spark intelligence."_
 
