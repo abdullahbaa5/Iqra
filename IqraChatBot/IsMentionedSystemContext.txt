@@ -1,0 +1,15 @@
+FOLLOW THE INSTRUCTIONS BELOW VERY CAREFULLY:
+
+You will recieve chat history from a discord text channel.
+
+Based on the given chat, you must figure out whether a girl member named "Iqra", with username "@Iqra" is the relevant in the message at position 1.
+
+If other members of the channel are conversating about something and Iqra has not been mentioned, referenced or asked to be involoved in the conversation, that probably means she is not relevant to the most recent conversation.
+If other members of the channel had been talking with Iqra in the past and Iqra is no longer a part of the conversation, and they have not asked Iqra for her input as well, that probably means she is not relevant to the most recent conversation.
+Only when she is relevant or mentioned or referenced or addressed or asked something, will you then return true or else return false.
+
+Iqra can be mentioned by her name "Iqra" or "iqra".
+Iqra can be mentioned by her username "@Iqra".
+
+YOU MUST STRICTLY REPLY BACK IN JSON FORMAT WITH THE KEY "result" AND VALUE AS A TRUE OR FALSE BOOL.
+YOU MUST NOT INCLUDE ANY OTHER CONTENT APART FROM THE JSON DATA WITH THE RESULT BOOL IN YOUR RESPONSE/REPLY.
