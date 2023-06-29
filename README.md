@@ -54,6 +54,10 @@ Output rules for generating JSON format is in the file ChatSystemContext.txt und
 
 Your contributions are always welcome! Please feel free to open an issue or create a pull request with your changes.
 
+## Credits
+@KeyserDSoze: C# port of OpenAI API
+@discord-net: C# Wrapper for Discord
+
 ## License
 
 Iqra is released under the Apache 2.0 license.
